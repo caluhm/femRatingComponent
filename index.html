@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Interactive rating component</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap');
+    
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Overpass', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: hsl(216, 12%, 8%);
+    }
+
+    .rating-model {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: clamp(300px, 50%, 400px);
+      aspect-ratio: 1/1;
+      background-color: hsl(213, 19%, 18%);
+      border-radius: 20px;
+      box-shadow: 0 0 10px 0 hsla(0, 0%, 0%, 0.1);
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+  
+    .inner-model {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      height: 100%;
+    }
+
+    .star {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background-color: hsl(214, 11%, 29%);
+      border-radius: 50%;
+    }
+     
+    .text > h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: hsl(0, 0%, 100%);
+      margin-bottom: 0.5rem;
+    }
+
+    .text > p {
+      color: hsl(216, 12%, 54%);
+    }
+
+    .rating-numbers {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .rating-numbers ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      list-style: none;
+    }
+
+    .rating-numbers ul .list__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      background-color: hsl(214, 11%, 29%);
+      border-radius: 50%;
+      color: hsl(216, 12%, 54%);;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .submit-btn > button {
+      font-family: 'Overpass', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+      background-color: hsl(25, 97%, 53%);
+      border-radius: 50px;
+      color: hsl(0, 0%, 100%);
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.1rem;
+    }
+
+    .rating-numbers ul .list__item:hover {
+      background-color: hsl(216, 12%, 54%);
+      color: white;
+    }
+
+    .rating-numbers ul .rating-numbers-selected {
+      background-color: hsl(25, 97%, 53%);
+      color: white;
+    }
+      
+    .submit-btn > button:hover {
+      color: hsl(25, 97%, 53%);
+      background-color: white;
+    }
+
+    .inner-model-completed {
+      height: 100%;
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .inner-model-completed .text {
+      text-align: center;
+      padding-bottom: 2rem;
+      
+    }
+
+    .inner-model-completed .you-selected-rating {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      height: 30px;
+      background-color: hsl(214, 11%, 29%);
+      border-radius: 30px;
+      color: hsl(25, 97%, 53%);
+      font-size: 1rem;
+      font-weight: 400;
+      border: none;
+      padding: 0 1rem 0 1rem;
+      
+    }
+
+    @media screen and (max-width: 685px) {
+      .star {
+        width: 40px;
+        height: 40px;
+      }
+
+      .rating-numbers ul .list__item {
+        width: 40px;
+        height: 40px;
+      }
+
+      .submit-btn > button {
+        height: 40px;
+        font-size: 0.8rem;
+      }
+
+      .text > h2 {
+        font-size: 1.5rem;
+      }
+
+      .text > p {
+        font-size: 0.8rem;
+      }
+
+      .inner-model-completed .you-selected-rating {
+        height: 25px;
+        font-size: 0.8rem;
+      }
+
+      .inner-model-completed .text {
+      padding-bottom: 0.5rem;
+      
+    }
+
+    }
+  </style>
+                           
+</head>
+<body>
+<div class="main">
+  <div class="rating-model">
+    <div class="inner-model">
+      <div class="star">
+        <img src="./images/icon-star.svg" alt="">
+      </div>
+      <div class="text">
+        <h2>How did we do?</h2>
+        <p>Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
+      </div>
+      <div class="rating-numbers">
+        <ul>
+          <li class="list__item">1</li>
+          <li class="list__item">2</li>
+          <li class="list__item">3</li>
+          <li class="list__item">4</li>
+          <li class="list__item">5</li>
+        </ul>
+      </div>
+      <div class="submit-btn">
+        <button class="submit">SUBMIT</button>
+      </div>
+    </div>
+    <div class="inner-model-completed">
+      <div class="image">
+        <img src="./images/illustration-thank-you.svg" alt="">
+      </div>
+      <div class="you-selected-rating">
+        <p>You selected <span class="selected-rating">x</span> out of 5</p>
+      </div>
+      <div class="text">
+        <h2> Thank you!</h2>
+        <p>We appreciate you taking the time to give a rating. If you ever need more support, 
+          don’t hesitate to get in touch!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
